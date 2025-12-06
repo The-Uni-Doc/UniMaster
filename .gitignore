@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+backend/service-account-key.json
+service-account-key.json
+*.pem
+*.key
+
+# Build Outputs
+dist/
+build/
+staticfiles/
+
+# Database
+db.sqlite3
+*.sqlite3
+
+# Media
+media/
+backend/media/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
