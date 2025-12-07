@@ -92,7 +92,8 @@ WSGI_APPLICATION = 'unimaster_backend.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL', default=f"postgres://{config('DB_USER')}:{config('DB_PASSWORD')}@{config('DB_HOST')}:{config('DB_PORT')}/{config('DB_NAME')}")
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
     )
 }
 
