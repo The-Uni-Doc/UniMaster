@@ -8,6 +8,7 @@ services:
   - type: web
     name: unimaster_backend
     env: python
+    rootDir: backend # Set the working directory to backend
     plan: free # Explicitly use Free tier
     buildCommand: "./build.sh"
     startCommand: "gunicorn unimaster_backend.wsgi:application"
