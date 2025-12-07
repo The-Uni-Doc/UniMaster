@@ -1,0 +1,26 @@
+databases:
+  - name: unimaster_db
+    databaseName: unimaster
+    user: unimaster_user
+
+services:
+  - type: web
+    name: unimaster_backend
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn unimaster_backend.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "false"
+      - key: ALLOWED_HOSTS
+        value: "*" # Update this with your actual Render URL after first deploy
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://your-frontend-url.vercel.app" # Update this with your Vercel URL
+      - key: DATABASE_URL
+        fromDatabase:
+          name: unimaster_db
+          property: connectionString

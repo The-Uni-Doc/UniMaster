@@ -7,3 +7,6 @@ django-storages
 google-cloud-storage
 python-decouple
 Pillow
+gunicorn
+whitenoise
+dj-database-url
