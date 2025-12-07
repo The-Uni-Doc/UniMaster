@@ -10,7 +10,7 @@ services:
     env: python
     rootDir: backend # Set the working directory to backend
     plan: free # Explicitly use Free tier
-    buildCommand: "./build.sh"
+    buildCommand: "chmod +x build.sh && ./build.sh"
     startCommand: "gunicorn unimaster_backend.wsgi:application"
     envVars:
       - key: PYTHON_VERSION
