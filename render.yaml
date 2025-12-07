@@ -2,11 +2,13 @@ databases:
   - name: unimaster_db
     databaseName: unimaster
     user: unimaster_user
+    plan: free # Explicitly use Free tier
 
 services:
   - type: web
     name: unimaster_backend
     env: python
+    plan: free # Explicitly use Free tier
     buildCommand: "./build.sh"
     startCommand: "gunicorn unimaster_backend.wsgi:application"
     envVars:
