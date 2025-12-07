@@ -56,14 +56,16 @@ export const deleteCourse = async (id: string): Promise<void> => {
 };
 
 export const getYears = async (courseId: string): Promise<any[]> => {
-    // Dummy implementation as backend doesn't support years yet
-    return [
-        { id: '1', yearNumber: 1, courseId },
-        { id: '2', yearNumber: 2, courseId },
-        { id: '3', yearNumber: 3, courseId },
-    ];
+    const response = await api.get('years/', { params: { course: courseId } });
+    return response.data;
 };
 
 export const ensureYearsForCourse = async (courseId: string): Promise<void> => {
-    // Dummy implementation
+    // Check if years exist, if not create them (1, 2, 3)
+    const existingYears = await getYears(courseId);
+    if (existingYears.length === 0) {
+        await api.post('years/', { course: courseId, year_number: 1 });
+        await api.post('years/', { course: courseId, year_number: 2 });
+        await api.post('years/', { course: courseId, year_number: 3 });
+    }
 };

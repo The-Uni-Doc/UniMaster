@@ -29,6 +29,17 @@ class Course(models.Model):
     def __str__(self):
         return f"{self.code} - {self.name}"
 
+class Year(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='years')
+    year_number = models.IntegerField()
+
+    class Meta:
+        unique_together = ('course', 'year_number')
+        ordering = ['year_number']
+
+    def __str__(self):
+        return f"{self.course.code} - Year {self.year_number}"
+
 class Material(models.Model):
     STATUS_CHOICES = (
         ('pending', 'Pending'),

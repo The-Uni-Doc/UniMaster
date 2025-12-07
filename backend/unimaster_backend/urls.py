@@ -20,7 +20,7 @@ from rest_framework.routers import DefaultRouter
 from core.views import (
     UniversityViewSet, CourseViewSet, 
     MaterialViewSet, PermissionRequestViewSet, RegisterView,
-    CustomTokenObtainPairView, UserViewSet
+    CustomTokenObtainPairView, UserViewSet, YearViewSet, CheckEmailView, ActivateAdminView
 )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -33,6 +33,7 @@ router.register(r'courses', CourseViewSet)
 router.register(r'materials', MaterialViewSet)
 router.register(r'permissions', PermissionRequestViewSet)
 router.register(r'users', UserViewSet)
+router.register(r'years', YearViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,4 +41,6 @@ urlpatterns = [
     path('api/register/', RegisterView.as_view(), name='auth_register'),
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/check-email/', CheckEmailView.as_view(), name='check_email'),
+    path('api/activate-admin/', ActivateAdminView.as_view(), name='activate_admin'),
 ]

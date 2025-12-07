@@ -3,13 +3,20 @@ import { UserRole, Permission } from '../types';
 
 export const authService = {
     checkEmailStatus: async (email: string) => {
-        // TODO: Implement backend endpoint
-        return { exists: false, role: UserRole.STUDENT };
+        const response = await api.post('check-email/', { email });
+        // If exists, we assume student for now unless we check role specifically
+        // But the requirement is just to check existence for signup flow
+        return { exists: response.data.exists, role: UserRole.STUDENT };
     },
 
     activateAdmin: async (email: string, password: string, profile: any) => {
-        // TODO: Implement backend endpoint
-        return true;
+        try {
+            await api.post('activate-admin/', { email, password });
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
     },
 
     register: async (email: string, password: string, uniId: string, courseId: string, profile: any) => {
